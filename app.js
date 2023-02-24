@@ -22,4 +22,9 @@ app.get('/api/countries', async (req, res) => {
     res.json(countryObjects)
 })
 
+app.get('/api/countries/:country', (async (req, res) => {
+    const country = await db.collection(collection).findOne({ country: req.params.country })
+    res.json(country)
+}))
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

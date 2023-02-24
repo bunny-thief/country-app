@@ -1,2 +1,6 @@
 GET http://localhost:5000/api/countries
 content-type: application/json
+
+###
+GET http://localhost:5000/api/countries/Panama
+content-type: application/json
