@@ -22,10 +22,10 @@ app.get('/api/countries', async (req, res) => {
     res.json(countryObjects)
 })
 
-app.get('/api/countries/:country', (async (req, res) => {
+app.get('/api/countries/country/:country', async (req, res) => {
     const country = await db.collection(collection).findOne({ country: req.params.country })
     res.json(country)
-}))
+})
 
 app.get('/api/countries/capital/:capital', async (req, res) => {
     const { country } = await db.collection(collection).findOne({ capital: req.params.capital })
@@ -33,8 +33,8 @@ app.get('/api/countries/capital/:capital', async (req, res) => {
 })
 
 app.get('/api/capitals/:country', (async (req, res) => {
-    const country = await db.collection(collection).findOne({ country: req.params.country })
-    res.json(country.capital)
+    const { capital } = await db.collection(collection).findOne({ country: req.params.country })
+    res.json(capital)
 }))
 
 
