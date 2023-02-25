@@ -27,9 +27,15 @@ app.get('/api/countries/:country', (async (req, res) => {
     res.json(country)
 }))
 
+app.get('/api/countries/capital/:capital', async (req, res) => {
+    const { country } = await db.collection(collection).findOne({ capital: req.params.capital })
+    res.json(country)
+})
+
 app.get('/api/capitals/:country', (async (req, res) => {
     const country = await db.collection(collection).findOne({ country: req.params.country })
     res.json(country.capital)
 }))
+
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

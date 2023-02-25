@@ -8,3 +8,7 @@ content-type: application/json
 ###
 GET http://localhost:5000/api/capitals/Panama
 Content-Type: application/json
+
+###
+GET http://localhost:5000/api/countries/capital/Rome
+Content-Type: application/json
