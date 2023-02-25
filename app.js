@@ -10,6 +10,8 @@ const database = process.env.DB
 const collection = process.env.COLLECTION
 const PORT = process.env.PORT || 5000
 
+app.set('view engine', 'ejs')
+
 app.use(morgan('tiny'))
 
 MongoClient.connect(connection_string, { useUnifiedTopology: true })
@@ -18,7 +20,9 @@ MongoClient.connect(connection_string, { useUnifiedTopology: true })
         console.log(`Connected to database`)
     })
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Country Info | Home' })
+})
 
 app.get('/api/countries', async (req, res) => {
     const countryObjects = await db.collection(collection).find().toArray()
