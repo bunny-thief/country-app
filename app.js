@@ -24,6 +24,15 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Country Info | Home' })
 })
 
+app.get('/search', async (req, res) => {
+    res.render('search', { title: 'Country Info | Search' })
+})
+
+app.get('/country', async (req, res) => {
+    const { country, capital, population, area } = await db.collection(collection).findOne({ country: req.query.getCountry })
+    res.render('country', { title: 'Country Info | Country', country, capital, population, area })
+})
+
 app.get('/api/countries', async (req, res) => {
     const countryObjects = await db.collection(collection).find().toArray()
     res.json(countryObjects)
