@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Country Info | Home' })
 })
 
-app.get('/search', async (req, res) => {
+app.get('/search', (req, res) => {
     res.render('search', { title: 'Country Info | Search' })
 })
 
@@ -33,9 +33,14 @@ app.get('/country', async (req, res) => {
     res.render('country', { title: 'Country Info | Country', country, capital, population, area })
 })
 
+app.get('/countries', async (req, res) => {
+    const countries = await db.collection(collection).find().sort({ country: 1 }).toArray()
+    res.render('countries', { title: 'Country Info | Countries', countries })
+})
+
 app.get('/api/countries', async (req, res) => {
-    const countryObjects = await db.collection(collection).find().toArray()
-    res.json(countryObjects)
+    const countries = await db.collection(collection).find().toArray()
+    res.json(countries)
 })
 
 app.get('/api/countries/country/:country', async (req, res) => {
