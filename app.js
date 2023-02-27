@@ -11,8 +11,8 @@ const collection = process.env.COLLECTION
 const PORT = process.env.PORT || 5000
 
 app.set('view engine', 'ejs')
-
 app.use(morgan('tiny'))
+app.use(express.static('public'))
 
 MongoClient.connect(connection_string, { useUnifiedTopology: true })
     .then(client => {
