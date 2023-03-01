@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+    "build-css": "tailwindcss build -i src/styles.css -o public/styles.css",
+    "watch-css": "tailwindcss build -i src/styles.css -o public/styles.css --watch"
   },
   "keywords": [],
   "author": "Jacques Navarro",
